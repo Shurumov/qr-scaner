@@ -1,0 +1,94 @@
+@import "libs"
+
+.page-header
+	height: 180px
+	background: linear-gradient(#2A56AF, #3265B8, #4D98D6, #6DD5FA)
+	display: flex
+	justify-content: center
+	align-items: center
+	align-content: center
+	&__image
+		img
+			max-width: 93px
+			max-height: 100px
+		&-checked
+			max-width: 100px
+			max-width: 100px
+
+.item
+	padding: 16px
+	&__title
+		font-size: 17px
+		line-height: 20px
+		color: #373737
+	&__time, &__area
+		margin-top: 12px
+		font-size: 14px
+		line-height: 16px
+		display: flex
+		justify-content: flex-start
+		align-items: center
+		align-content: center
+		&-icon
+			margin-right: 8px
+			vertical-align: top
+
+.registration
+	&-wrapper, &_finish
+		height: 80px
+		position: fixed
+		display: flex
+		justify-content: center
+		align-items: center
+		bottom: 0
+		padding: 16px
+		width: 100%
+		&_finish
+			background-color: #F6FAFC
+
+	&_thanks, &_ready
+		text-align: center
+		font-size: 17px
+		line-height: 20px
+		color: #373737
+	
+#registration
+	width: 100%
+	padding: 14px 16px
+	border-radius: 4px
+	background-color: #FF762D
+	border: 0
+	color: #ffffff
+	font-size: 17px
+	line-height: 20px
+	&:disabled
+		background-color: #C8C7CC
+
+@keyframes spin 
+	0% 
+		transform: rotate(0)
+	100% 
+		transform: rotate(360deg)
+	
+
+.loader 
+	border: 6px solid #c4c4c4
+	border-top: 6px solid #FF794A
+	border-radius: 50%
+	animation: spin 1s linear infinite
+	position: fixed
+	top: 50%
+	left: 50%
+	width: 50px
+	height: 50px
+	margin-top: -25px
+	margin-left: -25px
+	z-index: 50
+	&_background 
+		background-color: #fff
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		z-index: 50

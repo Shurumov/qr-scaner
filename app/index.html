@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<title>QR сканер</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+
+	<meta name="theme-color" content="#000">
+
+	<link rel="stylesheet" href="css/main.min.css" inline>
+
+</head>
+
+<body>
+	<div class="loader_background">
+		<div class="loader"></div>
+	</div>
+
+	<header class="page-header">
+		<div class="page-header__image">
+			<img src="img/event.svg" alt="">
+		</div>
+		<div class="page-header__image-checked" hidden>
+			<img src="img/check.svg" alt="">
+		</div>
+	</header>
+	<section class="item">
+		<div class="item__title">
+			
+		</div>
+		<div class="item__time" hidden>
+			<div class="item__time-icon"><img src="img/time.svg" alt=""></div>
+			<div class="item__time-text"></div>
+		</div>
+		<div class="item__area" hidden>
+			<div class="item__area-icon"><img src="img/pin.svg" alt=""></div>
+			<div class="item__area-text"></div>
+		</div>
+	</section>
+	<div class="registration-wrapper">
+		<button id="registration" type="submit" hidden>Зарегистрироваться</button>
+		<div class="registration_thanks" hidden>Спасибо за регистрацию</div>
+		<div class="registration_ready" hidden>Вы уже зарегистрированы</div>
+	</div>
+
+<script src="js/scripts.min.js"></script>
+</body>
+</html>
