@@ -11,7 +11,7 @@
 		img
 			max-width: 93px
 			max-height: 100px
-		&-checked
+		&-checked, &-lock
 			max-width: 100px
 			max-width: 100px
 
@@ -21,7 +21,7 @@
 		font-size: 17px
 		line-height: 20px
 		color: #373737
-	&__time, &__area
+	&__time, &__area, 
 		margin-top: 12px
 		font-size: 14px
 		line-height: 16px
@@ -32,6 +32,30 @@
 		&-icon
 			margin-right: 8px
 			vertical-align: top
+
+.key-word
+	&__title
+		margin-top: 120px
+		font-size: 20px
+		line-height: 23px
+		color: #373737
+		text-align: center
+		&::before, &::after
+			margin-right: 4px
+			content: "«"
+			font-size: 20px
+			line-height: 23px
+			color: #C8C7CC
+		&::after
+			margin-left: 4px
+			content: "»"
+
+	&__description
+		margin-top: 12px
+		font-size: 14px
+		line-height: 16px
+		color: #C8C7CC
+		text-align: center
 
 .registration
 	&-wrapper, &_finish

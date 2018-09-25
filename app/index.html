@@ -23,15 +23,18 @@
 		<div class="loader"></div>
 	</div>
 
-	<header class="page-header">
-		<div class="page-header__image">
+	<header class="page-header" >
+		<div class="page-header__image" hidden>
 			<img src="img/event.svg" alt="">
 		</div>
 		<div class="page-header__image-checked" hidden>
 			<img src="img/check.svg" alt="">
 		</div>
+		<div class="page-header__image-lock" hidden>
+			<img src="img/lock.svg" alt="">
+		</div>
 	</header>
-	<section class="item">
+	<section class="item" hidden>
 		<div class="item__title">
 			
 		</div>
@@ -43,8 +46,16 @@
 			<div class="item__area-icon"><img src="img/pin.svg" alt=""></div>
 			<div class="item__area-text"></div>
 		</div>
+		
 	</section>
-	<div class="registration-wrapper">
+
+	<section class="key-word" hidden>
+		<div class="key-word__title"><span></span></div>
+		<div class="key-word__description"></div>
+	</section>
+
+
+	<div class="registration-wrapper" hidden>
 		<button id="registration" type="submit" hidden>Зарегистрироваться</button>
 		<div class="registration_thanks" hidden>Спасибо за регистрацию</div>
 		<div class="registration_ready" hidden>Вы уже зарегистрированы</div>

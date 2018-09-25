@@ -1,5 +1,5 @@
 var sessionId, apiUrl, projectName, userId, schemaId, objectId, 
-		refreshToken, language, elementTitle, beginAt, areaId, areaTitle;
+		refreshToken, language, elementTitle, beginAt, areaId, areaTitle, htmlDescription;
 
 
 function qrCodeScan() {
@@ -19,10 +19,8 @@ function qrCodeFromNative(string) {
 	schemaId = params[1];
 	objectId = params[2];
 
-		getElementCollection();
-		checkRegistration();
-
-	
+	getElementCollection();
+	checkRegistration();
 
 }
 
@@ -75,6 +73,8 @@ function loginByToken() {
 			var response = JSON.parse(xhr.responseText)
 			sessionId = response.sessionId;
 			getElementCollection();
+				checkRegistration();
+			
 		}
 	};
 	xhr.send('"' + refreshToken + '"');
@@ -162,7 +162,7 @@ function getElementCollection(){
 		"where": {
 			"id": objectId
 		},
-		"include":['title','beginAt','areaId']
+		"include":['title','beginAt','areaId','html']
 	}
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -184,7 +184,7 @@ function getElementCollection(){
 				elementTitle = response[0].title;
 				beginAt = new Date(Date.parse(response[0].beginAt));
 				areaId = response[0].areaId;
-				
+				htmlDescription = response[0].html;
 				if(areaId){
 					getArea();
 				} else {
@@ -211,9 +211,9 @@ function setDataOnScreen() {
 		minute: 'numeric'
 	};
 
-	document.querySelector(".item__title").innerHTML = elementTitle;
+	
 
-	if ( beginAt ) {
+	if ( beginAt != "Invalid Date" ) {
 		document.querySelector(".item__time").hidden = false
 		if (language == "en"){
 			document.querySelector(".item__time-text").innerHTML = beginAt.toLocaleString("en", dateOptions);
@@ -226,6 +226,21 @@ function setDataOnScreen() {
 		document.querySelector(".item__area").hidden = false;
 		document.querySelector(".item__area-text").innerHTML = areaTitle;
 	}
+
+	if (schemaId == "Events"){
+		document.querySelector(".item").hidden = false;
+		document.querySelector(".page-header__image").hidden = false;
+		document.querySelector(".registration-wrapper").hidden = false;
+		document.querySelector(".item__title").innerHTML = elementTitle;
+	}
+
+	if (schemaId == "htmlPages"){
+		document.querySelector(".key-word").hidden = false;
+		document.querySelector(".page-header__image-lock").hidden = false;
+		document.querySelector(".key-word__title ").innerHTML = elementTitle;
+		document.querySelector(".key-word__description").innerHTML = htmlDescription;
+	}
+
 	stopLoadAnimation()
 }
 
@@ -277,6 +292,8 @@ button.addEventListener('click', function(){
 
 qrCodeScan()
 
-sessionFromNative('{"sessionId":"b93ed9bf-cd0b-46c4-b0d4-d24e0b202f3c","userId":"1","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"675c14ae-6415-4345-b7bc-538a2381a3a5"}');
+sessionFromNative('{"sessionId":"74571875-ad2e-415a-947e-4d07761d2d40","userId":"1","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"bc8816fd-0b8c-4cac-a713-5029bd07ba5c"}');
 
-qrCodeFromNative("appercode-qr-events:Events:d2dc292c-33ad-4147-9b86-14983a6f5538");
+qrCodeFromNative("appercode-qr-events:htmlPages:27ade948-d095-41c0-bcc5-040837407180"); 
+
+//qrCodeFromNative("appercode-qr-events:Events:d2dc292c-33ad-4147-9b86-14983a6f5538"); 
