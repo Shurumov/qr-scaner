@@ -151,8 +151,9 @@ function thankRegistering() {
 function alreadyRegistered(){
 	document.querySelector(".registration-wrapper").classList.toggle("registration-wrapper_finish");
 	document.querySelector(".registration_ready").hidden = false;
-	document.querySelector(".page-header__image").hidden = true;
+	
 	document.querySelector(".page-header__image-checked").hidden = false;
+	document.querySelector(".page-header__image").hidden = true;
 	button.hidden = true;
 }
 
@@ -195,8 +196,7 @@ function getElementCollection(){
 				console.log('Ошибка при парсинге ответа сервера.');
 			}
 		} else {
-			// Не забуть про этот алерт!!!
-			alert("Попрбуйте позже");
+			displayError ();
 		}
 	};
 	xhr.send(JSON.stringify(reqBody));
@@ -229,13 +229,13 @@ function setDataOnScreen() {
 
 	if (schemaId == "Events"){
 		document.querySelector(".item").hidden = false;
-		document.querySelector(".page-header__image").hidden = false;
 		document.querySelector(".registration-wrapper").hidden = false;
 		document.querySelector(".item__title").innerHTML = elementTitle;
 	}
 
 	if (schemaId == "htmlPages"){
 		document.querySelector(".key-word").hidden = false;
+		document.querySelector(".page-header__image").hidden = true;
 		document.querySelector(".page-header__image-lock").hidden = false;
 		document.querySelector(".key-word__title ").innerHTML = elementTitle;
 		document.querySelector(".key-word__description").innerHTML = htmlDescription;
@@ -283,6 +283,13 @@ function stopLoadAnimation(){
 	document.querySelector(".loader_background").hidden = true
 }
 
+function displayError () {
+	document.querySelector(".page-header__image").hidden = true;
+	document.querySelector(".page-header__image-lock").hidden = false;
+	document.querySelector(".error").hidden = false;
+	stopLoadAnimation();
+}
+
 var button = document.querySelector("#registration");
 button.addEventListener('click', function(){
 	disableButton();
@@ -292,7 +299,7 @@ button.addEventListener('click', function(){
 
 qrCodeScan()
 
-sessionFromNative('{"sessionId":"74571875-ad2e-415a-947e-4d07761d2d40","userId":"1","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"bc8816fd-0b8c-4cac-a713-5029bd07ba5c"}');
+sessionFromNative('{"sessionId":"47b1193c-ec48-4da8-ab6c-e0a3047ac67f","userId":"1","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"bc8816fd-0b8c-4cac-a713-5029bd07ba5c"}');
 
 qrCodeFromNative("appercode-qr-events:htmlPages:27ade948-d095-41c0-bcc5-040837407180"); 
 
