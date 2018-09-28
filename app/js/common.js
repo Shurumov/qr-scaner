@@ -15,12 +15,20 @@ function qrCodeScan() {
 }
 
 function qrCodeFromNative(string) {
-	var params = string.split(":");
-	schemaId = params[1];
-	objectId = params[2];
+	if(string){
+		var params = string.split(":");
+		schemaId = params[1];
+		objectId = params[2];
 
-	getElementCollection();
-	checkRegistration();
+		getElementCollection();
+		checkRegistration();
+	} else {
+		stopLoadAnimation();
+	}
+
+}
+
+function showScan() {
 
 }
 
@@ -166,15 +174,16 @@ function thankRegistering() {
 	document.querySelector(".registration_thanks").hidden = false;
 	document.querySelector(".page-header__image").hidden = true;
 	document.querySelector(".page-header__image-checked").hidden = false;
+	document.querySelector(".default").hidden = true;
 	button.hidden = true;
 }
 
 function alreadyRegistered(){
 	document.querySelector(".registration-wrapper").classList.toggle("registration-wrapper_finish");
 	document.querySelector(".registration_ready").hidden = false;
-	
 	document.querySelector(".page-header__image-checked").hidden = false;
 	document.querySelector(".page-header__image").hidden = true;
+	document.querySelector(".default").hidden = true;
 	button.hidden = true;
 }
 
@@ -250,6 +259,7 @@ function setDataOnScreen() {
 		document.querySelector(".item").hidden = false;
 		document.querySelector(".registration-wrapper").hidden = false;
 		document.querySelector(".item__title").innerHTML = elementTitle;
+		document.querySelector(".default").hidden = true;
 	}
 
 	if (schemaId == "htmlPages"){
@@ -258,6 +268,7 @@ function setDataOnScreen() {
 		document.querySelector(".page-header__image-lock").hidden = false;
 		document.querySelector(".key-word__title ").innerHTML = elementTitle;
 		document.querySelector(".key-word__description").innerHTML = htmlDescription;
+		document.querySelector(".default").hidden = true;
 	}
 
 	stopLoadAnimation()
@@ -306,20 +317,23 @@ function displayError () {
 	document.querySelector(".page-header__image").hidden = true;
 	document.querySelector(".page-header__image-lock").hidden = false;
 	document.querySelector(".error").hidden = false;
+	document.querySelector(".default").hidden = true;
 	stopLoadAnimation();
 }
 
 var button = document.querySelector("#registration");
+var btnScan = document.querySelector(".btn-scan");
 button.addEventListener('click', function(){
 	disableButton();
 	sendRegistration();
-})
+});
+btnScan.addEventListener('click', qrCodeScan);
 
 
 qrCodeScan()
 
-//sessionFromNative('{"sessionId":"200268e3-20a1-4c7f-836b-d1cef9388d1a1","userId":"90","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"1"}');
-
+//sessionFromNative('{"sessionId":"9bb640d8-97b9-474e-af8e-4ce088c6ebd3","userId":"90","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"1"}');
+//qrCodeFromNative("");
 //qrCodeFromNative("appercode-qr-events:htmlPages:27ade948-d095-41c0-bcc5-040837407180"); 
 
 //qrCodeFromNative("appercode-qr-events:Events:34d9fff7-ec2a-45a9-a308-d8368b42ecaa"); 
