@@ -38,21 +38,33 @@ function sendRegistration() {
 	xhr.setRequestHeader("X-Appercode-Session-Token", sessionId);
 
 	xhr.onreadystatechange = function() {
-		if (xhr.readyState != 4) 
+
+		if (xhr.readyState != 4){
+			enableButton();
 			return;
+		}
 		if (xhr.status == 401) {
 			console.log("не удалось получить данные");
 		} else if (xhr.status == 200) {
 			try {
 				response = JSON.parse(xhr.responseText);
 				thankRegistering();
+				document.querySelector(".error").hidden = true;
+				setDataOnScreen();
 			} catch (err) {
 				console.log('Ошибка при парсинге ответа сервера.');
 			}
-		}
+		} 
 	};
 
+
 	xhr.send(JSON.stringify(reqBody));
+
+	if(xhr.readyState == 1 || xhr.readyState == 3){
+		setTimeout(enableButton, 10000);
+		setTimeout(showError, 10000);
+	}
+	
 
 }
 
@@ -99,6 +111,15 @@ function sessionFromNative(jsonStr) {
 function disableButton(){
 	button.disabled = true;
 }
+
+function enableButton(){
+	button.disabled = false;
+}
+
+function showError() {
+	document.querySelector(".error").hidden = false;
+	document.querySelector(".item").hidden = true;
+} 
 
 function checkRegistration() {
 
@@ -211,8 +232,6 @@ function setDataOnScreen() {
 		minute: 'numeric'
 	};
 
-	
-
 	if ( beginAt != "Invalid Date" ) {
 		document.querySelector(".item__time").hidden = false
 		if (language == "en"){
@@ -299,8 +318,8 @@ button.addEventListener('click', function(){
 
 qrCodeScan()
 
-sessionFromNative('{"sessionId":"47b1193c-ec48-4da8-ab6c-e0a3047ac67f","userId":"1","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"bc8816fd-0b8c-4cac-a713-5029bd07ba5c"}');
+//sessionFromNative('{"sessionId":"200268e3-20a1-4c7f-836b-d1cef9388d1a1","userId":"90","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"1"}');
 
-qrCodeFromNative("appercode-qr-events:htmlPages:27ade948-d095-41c0-bcc5-040837407180"); 
+//qrCodeFromNative("appercode-qr-events:htmlPages:27ade948-d095-41c0-bcc5-040837407180"); 
 
-//qrCodeFromNative("appercode-qr-events:Events:d2dc292c-33ad-4147-9b86-14983a6f5538"); 
+//qrCodeFromNative("appercode-qr-events:Events:34d9fff7-ec2a-45a9-a308-d8368b42ecaa"); 
