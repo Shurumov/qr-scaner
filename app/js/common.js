@@ -3,7 +3,6 @@ var sessionId, apiUrl, projectName, userId, schemaId, objectId,
 
 
 function qrCodeScan() {
-	console.log("сканер запустился")
 	if (window.webkit != undefined) {
 			if (window.webkit.messageHandlers.qrScanner!= undefined) {
 					window.webkit.messageHandlers.qrScanner.postMessage("scan"); 
@@ -14,7 +13,13 @@ function qrCodeScan() {
 	}
 }
 
+function hiddenError(){
+	document.querySelector(".error").hidden = true
+
+}
+
 function qrCodeFromNative(string) {
+	hiddenError();
 	if(string){
 		var params = string.split(":");
 		schemaId = params[1];
@@ -125,6 +130,7 @@ function enableButton(){
 }
 
 function showError() {
+	
 	document.querySelector(".error").hidden = false;
 	document.querySelector(".item").hidden = true;
 } 
@@ -317,7 +323,7 @@ function displayError () {
 	document.querySelector(".page-header__image").hidden = true;
 	document.querySelector(".page-header__image-lock").hidden = false;
 	document.querySelector(".error").hidden = false;
-	document.querySelector(".default").hidden = true;
+	document.querySelector(".default").hidden = false;
 	stopLoadAnimation();
 }
 
@@ -332,8 +338,3 @@ btnScan.addEventListener('click', qrCodeScan);
 
 qrCodeScan()
 
-//sessionFromNative('{"sessionId":"9bb640d8-97b9-474e-af8e-4ce088c6ebd3","userId":"90","language": "ru","projectName": "tmk","baseUrl":"http://test.appercode.com/v1/","refreshToken":"1"}');
-//qrCodeFromNative("");
-//qrCodeFromNative("appercode-qr-events:htmlPages:27ade948-d095-41c0-bcc5-040837407180"); 
-
-//qrCodeFromNative("appercode-qr-events:Events:34d9fff7-ec2a-45a9-a308-d8368b42ecaa"); 
