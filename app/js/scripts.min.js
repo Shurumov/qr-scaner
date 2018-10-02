@@ -353,8 +353,3 @@ btnScan.addEventListener('click', qrCodeScan);
 
 qrCodeScan()
 
-sessionFromNative('{"sessionId":"e9986f43-1157-41ee-80e9-887f1eda0e0f","userId":"90","language": "ru","projectName": "tmk","baseUrl":"https://api.appercode.com/v1/","refreshToken":"1"}');
-
-qrCodeFromNative("appercode-qr-events:Events:afae8f0f-616c-4aa2-95db-4f2f72a53cfc")
-
-//qrCodeFromNative("");
