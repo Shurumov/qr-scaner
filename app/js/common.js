@@ -80,11 +80,6 @@ function sendRegistration() {
 
 	xhr.send(JSON.stringify(reqBody));
 
-	if(xhr.readyState == 1 || xhr.readyState == 3){
-		setTimeout(enableButton, 10000);
-		setTimeout(showError, 10000);
-	}
-	
 
 }
 
@@ -235,7 +230,8 @@ function setDataOnScreen() {
 		month: 'long',
 		day: 'numeric',
 		hour: 'numeric',
-		minute: 'numeric'
+		minute: 'numeric',
+		timeZone: 'UTC'
 	};
 
 	if ( beginAt != "Invalid Date" ) {
@@ -357,10 +353,8 @@ btnScan.addEventListener('click', qrCodeScan);
 
 qrCodeScan()
 
-sessionFromNative('{"sessionId":"3084d0d4-2095-4aea-9532-9b77820c80dd","userId":"90","language":"ru","projectName":"tmk","baseUrl":"http://api.appercode.com/v1/","refreshToken":"1"}');
+sessionFromNative('{"sessionId":"e9986f43-1157-41ee-80e9-887f1eda0e0f","userId":"90","language": "ru","projectName": "tmk","baseUrl":"https://api.appercode.com/v1/","refreshToken":"1"}');
 
-//qrCodeFromNative("appercode-qr-events:htmlPages:ce27f33d-93eb-4e66-b6d0-7ea1047382c9");
-
-qrCodeFromNative("appercode-qr-events:Events:afae8f0f-616c-4aa2-95db-4f2f72a53cfc");
+qrCodeFromNative("appercode-qr-events:Events:afae8f0f-616c-4aa2-95db-4f2f72a53cfc")
 
 //qrCodeFromNative("");
