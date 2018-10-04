@@ -29,19 +29,21 @@ function qrCodeFromNative(string) {
 		if( appercodeQR == "appercode-qr-events" ){
 			getElementCollection();
 			checkRegistration();
+		} else if( string.indexOf("https://youtu.be/9sIRb5QdOPA") != -1 ) {
+			showFootball();
 		} else {
 			displayError();
 		}
-
-		
 	} else {
 		stopLoadAnimation();
 	}
 
 }
 
-function showScan() {
-
+function showFootball() {
+	document.querySelector(".default").hidden = true;
+	document.querySelector(".football").hidden = false;
+	stopLoadAnimation();
 }
 
 function sendRegistration() {
@@ -180,7 +182,7 @@ function alreadyRegistered(){
 }
 
 function getElementCollection(){
-	var url = `${apiUrl}/objects/${schemaId}/query`;
+	var url = apiUrl + "/objects/" + schemaId + "/query";
 	var reqBody = {
 		"where": {
 			"id": objectId
@@ -268,7 +270,7 @@ function setDataOnScreen() {
 }
 
 function getArea() {
-	var url = `${apiUrl}/objects/Areas/query`;
+	var url = apiUrl + "/objects/Areas/query";
 	var reqBody = {
 		"where": {
 			"id": areaId
@@ -321,6 +323,7 @@ function localizeInterface() {
 		document.querySelector("#registration").innerHTML = "Registration";
 		document.querySelector(".registration_thanks").innerHTML = "Thank you for registration";
 		document.querySelector(".registration_ready").innerHTML = "You are already registered";
+		document.querySelector(".btn-football span").innerHTML = "Live stream";
 	}
 }
 
@@ -337,7 +340,7 @@ function sessionFromNative(jsonStr) {
 	projectName = params.projectName;
 	userId = +params.userId;
 	refreshToken = params.refreshToken;
-	language = `${params.language}`;
+	language = params.language;
 	localizeInterface();
 }
 
