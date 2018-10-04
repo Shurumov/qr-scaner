@@ -29,7 +29,7 @@ function qrCodeFromNative(string) {
 		if( appercodeQR == "appercode-qr-events" ){
 			getElementCollection();
 			checkRegistration();
-		} else if( string.indexOf("https://youtu.be/9sIRb5QdOPA") != -1 ) {
+		} else if( string.indexOf("https://youtu.be/") != -1 ) {
 			showFootball();
 		} else {
 			displayError();
